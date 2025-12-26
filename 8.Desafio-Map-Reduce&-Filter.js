@@ -7,4 +7,19 @@ const companies = [
     {name: 'Apple', marketValue: 845, CEO: 'Tim Cook', foundedOn: 1976},
 ];
 
-const newCompanies = companies.map()
+const sub10Percent = (company) => {
+    company.marketValue = company.marketValue - company.marketValue / 10
+
+    return company
+}
+
+const filterCompanies = (company) => company.foundedOn > 1980
+
+const calculateTotalMarketValue = (acc, company) => acc + company.marketValue
+
+const marketValueOldCompanies = companies
+.map(sub10Percent)
+.filter(filterCompanies)
+.reduce(calculateTotalMarketValue, 0)
+
+console.log(marketValueOldCompanies)
